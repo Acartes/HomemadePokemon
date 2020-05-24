@@ -13,6 +13,7 @@ public class InputEvent_StopDirection : UnityEvent
 
 public class InputEvent : MonoBehaviour
 {
+
     public InputEvent_Direction inputEvent_Direction;
     public InputEvent_StopDirection inputEvent_StopDirection;
     // Update is called once per frame
