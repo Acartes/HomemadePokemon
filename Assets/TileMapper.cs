@@ -24,7 +24,6 @@ public class TileMapper : MonoBehaviour {
 
         Selection.activeGameObject = gameObject;
 
-        Test ();
         Vector3 newPos = GetMousePosition ();
         newPos = new Vector3 (newPos.x, newPos.y, 0);
         Gizmos.color = Color.red;
@@ -36,6 +35,7 @@ public class TileMapper : MonoBehaviour {
                 }
             }
             GameObject a = Instantiate (selectedTile, GridPos (newPos), Quaternion.identity, transform);
+            a.SetActive(true);
             tilesInGame.Add (a);
         }
         if (delete) {
@@ -52,12 +52,6 @@ public class TileMapper : MonoBehaviour {
     void DeleteTile () {
         tilesInGame.Remove (tileToDelete);
         DestroyImmediate (tileToDelete);
-    }
-
-    void Test () {
-        if (Event.current.type == EventType.MouseDrag) {
-            Debug.Log ("up");
-        }
     }
 
     Vector3 GetMousePosition () {
