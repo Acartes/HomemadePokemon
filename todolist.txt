@@ -1,0 +1,7 @@
+ia,
+map interactions,
+battles, 
+inventory,
+dialogues,
+sprites
+musique.
