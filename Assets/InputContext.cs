@@ -13,9 +13,11 @@ public class InputContext : MonoBehaviour
 
 
     [Header("World Map movement")]
-    public  GameObject Character;
+    public InGameEntity Character;
 
     public MoveEvent moveEvent;
+
+    public MapInteractionEvent MapInteractionEvent;
 
 
     /// <summary>
@@ -25,6 +27,7 @@ public class InputContext : MonoBehaviour
     void Start()
     {
         inputEvent.inputEvent_Direction.AddListener(UpdateGame);
+        inputEvent.inputEvent_Action.AddListener(UpdateGame);
     }
 
     // Update is called once per frame
@@ -37,8 +40,20 @@ public class InputContext : MonoBehaviour
             break;
         }
     }
+    void UpdateGame(Action a)
+    {
+        switch (gameState)
+        {
+            case GAMESTATE.WORLDMAP :
+                WorldMapContext(a);
+            break;
+        }
+    }
 
     void WorldMapContext(Direction direction){
-            moveEvent.Move(Character.transform, direction);
+            moveEvent.Move(Character, direction);
+    }
+    void WorldMapContext(Action action){
+            MapInteractionEvent.Action(action);
     }
 }

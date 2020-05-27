@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
-    public GameObject character;
-    public int width;
-    public int height;
-
+    public InteractableItems interactableItems;
+    public GridRules gridRules;
 
     // Start is called before the first frame update
     void Start()
     {
-        character.transform.position = new Vector3(width, height, 0);
+        foreach (InGameEntity item in interactableItems.interactableEntities)
+        {
+            gridRules.blockPosition((int)item.transform.position.x, (int)item.transform.position.y);
+        }
     }
 }

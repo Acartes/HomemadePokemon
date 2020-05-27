@@ -2,8 +2,24 @@
 using UnityEngine.Events;
 using UnityEngine;
 
+public enum Direction {
+    UP,
+    DOWN,
+    RIGHT,
+    LEFT,
+    STOP
+}
+
+public enum Action {
+    MAIN_ACTION
+}
+
 [System.Serializable]
 public class InputEvent_Direction : UnityEvent<Direction>
+{
+}
+[System.Serializable]
+public class InputEvent_Action : UnityEvent<Action>
 {
 }
 [System.Serializable]
@@ -15,7 +31,7 @@ public class InputEvent : MonoBehaviour
 {
 
     public InputEvent_Direction inputEvent_Direction;
-    public InputEvent_StopDirection inputEvent_StopDirection;
+    public InputEvent_Action inputEvent_Action;
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +49,9 @@ public class InputEvent : MonoBehaviour
         }
         if(AnyArrowUp()){
             inputEvent_Direction.Invoke(Direction.STOP);
+        }
+        if(Input.GetKey(KeyCode.Space)){
+            inputEvent_Action.Invoke(Action.MAIN_ACTION);
         }
     }
 

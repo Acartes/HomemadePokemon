@@ -3,21 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direction {
-    UP,
-    DOWN,
-    RIGHT,
-    LEFT,
-    STOP
-}
 
 [Serializable]
 public class MoveStackArguments {
-    public MoveStackArguments (Transform _toMove, Direction _direction) {
+    public MoveStackArguments (InGameEntity _toMove, Direction _direction) {
         toMove = _toMove;
         direction = _direction;
     }
-    public Transform toMove;
+    public InGameEntity toMove;
     public Direction direction;
 }
 
@@ -28,7 +21,7 @@ public class MoveEvent : MonoBehaviour {
     public int steps = 20;
     bool lockedAction;
 
-    public void Move (Transform toMove, Direction direction, bool forced = false) {
+    public void Move (InGameEntity toMove, Direction direction, bool forced = false) {
         if ((moveStack.Count > 0 || lockedAction) && !forced)
             return;
         moveStack.Add (new MoveStackArguments (toMove, direction));
@@ -53,7 +46,8 @@ public class MoveEvent : MonoBehaviour {
 
     IEnumerator MoveAction (MoveStackArguments arguments) {
         Direction direction = arguments.direction;
-        Transform toMove = arguments.toMove;
+        InGameEntity entity = arguments.toMove;
+        Transform toMove = entity.transform;
 
         lockedAction = true;
 
@@ -73,15 +67,15 @@ public class MoveEvent : MonoBehaviour {
                 break;
             case Direction.STOP:
                 moveStack.Clear ();
-                yield return null;
-                break;
+                lockedAction = false;
+                yield break;
         }
 
-        Vector3 basePosition = arguments.toMove.position;
-        Vector3 finalPosition = vectorDirection + arguments.toMove.position;
+        Vector3 basePosition = arguments.toMove.transform.position;
+        Vector3 finalPosition = vectorDirection + arguments.toMove.transform.position;
+        entity.facingDirection = direction;
 
         if (GridRules.Instance.blockedPosition.Contains (finalPosition)) {
-            Debug.Log ("DUNG");
             lockedAction = false;
             yield break;
         }
