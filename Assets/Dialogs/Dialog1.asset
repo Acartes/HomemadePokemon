@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecd8f1b7936a86e3adbdc23ea99176b, type: 3}
   m_Name: Dialog1
   m_EditorClassIdentifier: 
-  dialog: DEUS VULT
+  dialog: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum
+    justo a enim laoreet, non euismod urna luctus. Cras ullamcorper id leo sed sollicitudin.
+    In luctus orci a enim ultrices egestas. Quisque et neque vitae metus venenatis
+    euismod ac a velit. Vestibulum fringilla mattis urna, et vehicula lectus lacinia
+    vitae. In dictum sem sed nibh vulputate tincidunt. Mauris aliquam rutrum tellus,
+    vitae placerat eros. Maecenas ut nisl nunc. Donec vulputate tincidunt nunc ac
+    lacinia. Integer fringilla, tellus ac ultrices porttitor, nulla mi rutrum nunc,
+    et tincidunt diam mi eu purus. Vestibulum lacus ante, pretium nec congue et, varius
+    vel lectus. Aenean dapibus rhoncus facilisis. Nam porta lacus vel eros porttitor
+    vulputate. '
   nextDialog: {fileID: 11400000, guid: 22db496934f429662b54933e377146bc, type: 2}

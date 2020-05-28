@@ -50,7 +50,7 @@ public class InputEvent : MonoBehaviour
         if(AnyArrowUp()){
             inputEvent_Direction.Invoke(Direction.STOP);
         }
-        if(Input.GetKey(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space)){
             inputEvent_Action.Invoke(Action.MAIN_ACTION);
         }
     }

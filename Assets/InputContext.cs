@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum GAMESTATE{
     WORLDMAP,
+    DIALOG
 }
 
 public class InputContext : MonoBehaviour
@@ -28,12 +29,13 @@ public class InputContext : MonoBehaviour
     {
         inputEvent.inputEvent_Direction.AddListener(UpdateGame);
         inputEvent.inputEvent_Action.AddListener(UpdateGame);
+        gameState = GAMESTATE.WORLDMAP;
     }
 
     // Update is called once per frame
     void UpdateGame(Direction a)
     {
-        switch (gameState)
+        switch (getGameState())
         {
             case GAMESTATE.WORLDMAP :
                 WorldMapContext(a);
@@ -42,9 +44,12 @@ public class InputContext : MonoBehaviour
     }
     void UpdateGame(Action a)
     {
-        switch (gameState)
+        switch (getGameState())
         {
             case GAMESTATE.WORLDMAP :
+                WorldMapContext(a);
+            break;
+            case GAMESTATE.DIALOG :
                 WorldMapContext(a);
             break;
         }
@@ -56,4 +61,16 @@ public class InputContext : MonoBehaviour
     void WorldMapContext(Action action){
             MapInteractionEvent.Action(action);
     }
+
+    GAMESTATE getGameState(){
+        return Player_Gamestate.player_gameState;
+    }
+
+    void setGameState(GAMESTATE newGamestate){
+        Player_Gamestate.player_gameState = newGamestate;
+    }
+}
+
+public static class Player_Gamestate{
+        public static GAMESTATE player_gameState;
 }

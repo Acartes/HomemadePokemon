@@ -53,8 +53,11 @@ public class MapInteractionEvent : MonoBehaviour {
             Debug.Log("No interactable entity found");
         }
         if(interactableEntity){
-            dialogEvent.TryDialogInteraction(interactableEntity);
-            dialogEvent.TryContinueDialog();
+            if(dialogEvent.TryDialogInteraction(interactableEntity) ||  dialogEvent.TryContinueDialog() || dialogEvent.TryAccelerateDialog()){
+                Player_Gamestate.player_gameState = GAMESTATE.DIALOG;
+            }
+            else
+                Player_Gamestate.player_gameState = GAMESTATE.WORLDMAP;
         }
     }
 }

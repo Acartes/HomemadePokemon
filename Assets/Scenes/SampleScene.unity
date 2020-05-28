@@ -2432,8 +2432,9 @@ MonoBehaviour:
   dialogsList: []
   dialogDisplay: {fileID: 682741529}
   letterTimer: 0.1
-  maxDialogSize: 3
+  maxDialogSize: 150
   canContinueDialog: 0
+  accelerateCurrentFrame: 0
 --- !u!4 &1927038565
 Transform:
   m_ObjectHideFlags: 0
