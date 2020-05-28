@@ -5,3 +5,5 @@ inventory,
 dialogues,
 sprites
 musique.
+
+in progress : map interactions
