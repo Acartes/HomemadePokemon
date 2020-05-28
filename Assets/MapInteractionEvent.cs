@@ -10,6 +10,7 @@ public class MapInteractionEvent : MonoBehaviour {
     public InteractableItems interactableItems;
 
     public CharacterInteractionState characterInteractionState;
+    public DialogEvent dialogEvent;
 
     // Update is called once per frame
     public void Action (Action action) {
@@ -52,7 +53,8 @@ public class MapInteractionEvent : MonoBehaviour {
             Debug.Log("No interactable entity found");
         }
         if(interactableEntity){
-            Debug.Log(interactableEntity.name);
+            dialogEvent.TryDialogInteraction(interactableEntity);
+            dialogEvent.TryContinueDialog();
         }
     }
 }
